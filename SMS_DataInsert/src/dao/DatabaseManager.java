@@ -39,7 +39,7 @@ public class DatabaseManager{
 	public void executeQuery(String query) {
 	    try {
 	    	Statement stmt = con.createStatement();
-	    	stmt.executeQuery(query);
+	    	stmt.executeUpdate(query);
 	    	System.out.println("Executed query : "+query);
 	    }catch(SQLException e) {
 	    	System.out.println("Failed to execute query : " + e.getMessage());
