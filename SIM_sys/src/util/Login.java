@@ -31,8 +31,6 @@ public class Login {
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		valid = false;
-		
 		return valid;
 	}
 }
