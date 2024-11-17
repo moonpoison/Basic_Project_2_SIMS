@@ -31,12 +31,30 @@ public class QueryMaker {
 		return queries;
 	}
 	//students 테이블에 보낼 DELETE 쿼리를 만드는 메소드
-		public ArrayList<String> createDQueryStudent(int[] snum) {
-			ArrayList<String> queries = new ArrayList<>();
-			for(int i : snum) {
-				String query = String.format("DELETE FROM student WHERE snum='%d'", i);
-				queries.add(query);
-			}
-			return queries;
+	public ArrayList<String> createDQueryStudent(int[] snum) {
+		ArrayList<String> queries = new ArrayList<>();
+		for(int i : snum) {
+			String query = String.format("DELETE FROM students WHERE snum='%d'", i);
+			queries.add(query);
 		}
+		return queries;
+	}
+	//students 테이블에 보낼 DELETE 쿼리를 만드는 메소드
+	public String createSQueryStudent(Student stu) {
+		String dep = stu.getDepartment();
+		String grade = stu.getGrade();
+		int year = stu.getYear();
+		
+		String query = String.format("SELECT * FROM students WHERE 1=1");
+		if(dep!=null && !dep.isEmpty()) {
+			query+=String.format(" AND department='%s'", dep);
+		}
+		if(grade!=null && !grade.isEmpty()) {
+			query+=String.format(" AND department='%s'", grade);
+		}
+		if(dep!=null) {
+			query+=String.format(" AND department='%d'", year);
+		}
+		return query;
+	}
 }
