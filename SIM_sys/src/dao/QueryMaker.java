@@ -43,18 +43,23 @@ public class QueryMaker {
 	public String createSQueryStudent(Student stu) {
 		String dep = stu.getDepartment();
 		String grade = stu.getGrade();
-		int year = stu.getYear();
+		Integer year = stu.getYear();
 		
 		String query = String.format("SELECT * FROM students WHERE 1=1");
 		if(dep!=null && !dep.isEmpty()) {
 			query+=String.format(" AND department='%s'", dep);
 		}
 		if(grade!=null && !grade.isEmpty()) {
-			query+=String.format(" AND department='%s'", grade);
+			query+=String.format(" AND grade='%s'", grade);
 		}
-		if(dep!=null) {
-			query+=String.format(" AND department='%d'", year);
+		if(year!=null) {
+			query+=String.format(" AND year='%d'", year);
 		}
+		return query;
+	}
+	//students 테이블에 보낼 SELECT ALL 쿼리를 만드는 메소드
+	public String createSQueryDepartment() {
+		String query = "SELECT * FROM departments";
 		return query;
 	}
 }
