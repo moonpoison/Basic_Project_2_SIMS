@@ -19,7 +19,7 @@ public class Login {
 	//ID가 존재하는지
 	public boolean loginUser() {
 		boolean valid=false;
-		DatabaseManager dm = new DatabaseManager();
+		DatabaseManager dm = DatabaseManager.getInstance();
 		QueryMaker qm = new QueryMaker();
 		
 		String query = qm.createLoginQuery(id, pw);
