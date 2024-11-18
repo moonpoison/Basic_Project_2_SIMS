@@ -73,6 +73,7 @@ public class DatabaseManager{
 	    	System.out.println("Successfully Executed query : "+query);
 	    }catch(SQLException e) {
 	    	System.out.println("Failed to execute query : " + query);
+	    	e.printStackTrace();
 	    }
 	}
 }

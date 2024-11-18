@@ -72,6 +72,7 @@ public class MainUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setBackground(Color.WHITE);
 		frame.setTitle("학생정보관리 프로그램");
 		frame.setBounds(100, 100, 900, 300);
 		frame.setLocation(600, 200);
@@ -190,22 +191,41 @@ public class MainUI {
 				DefaultMutableTreeNode selected = (DefaultMutableTreeNode) tr_year.getLastSelectedPathComponent();
 				// 선택된 노드가 null이 아닌 경우 처리
                 if (selected != null) {
-                    int year = (int)selected.getUserObject().toString().charAt(0)-48;
-                    String grade=null;
-                    if(ckGS.isSelected()) grade=ckGS.getText();
-                    if(ckUS.isSelected()) grade=ckUS.getText();
-                    System.out.println(grade);
-                    String dname = (String) cb_depart.getSelectedItem();
-                    Student stu = new Student(null, null, year, grade, dname);
-                    StudentManager sm = new StudentManager();
-                    ArrayList<Student> studentList = sm.selectStudent(stu);
-                    //테이블갱신
-                    tableModel.setRowCount(0);
-                    for(Student i : studentList) {
-                    	Object[] row = {i.getName(), i.getNum(), i.getYear(), i.getGrade(), i.getDepartment()};
-                    	tableModel.addRow(row);
-                    }
-                    tableModel.fireTableDataChanged();
+                	//루트 노드
+                	if(selected.isRoot()) {
+                		String grade=null;
+                		if(ckGS.isSelected()) grade=ckGS.getText();
+                		if(ckUS.isSelected()) grade=ckUS.getText();
+                		String dname = (String) cb_depart.getSelectedItem();
+                		Student stu = new Student(null, null, null, grade, dname);
+                		StudentManager sm = new StudentManager();
+                		ArrayList<Student> studentList = sm.selectStudent(stu);
+                		//테이블갱신
+                		tableModel.setRowCount(0);
+                		for(Student i : studentList) {
+                			Object[] row = {i.getName(), i.getNum(), i.getYear(), i.getGrade(), i.getDepartment()};
+                			tableModel.addRow(row);
+                		}
+                		tableModel.fireTableDataChanged();  
+                	}
+                	//하위 노드
+                	else if(selected.isLeaf()) {
+                		int year = (int)selected.getUserObject().toString().charAt(0)-(int)'0'; //char to int로 인해 아스키코드 0을 뺌
+                		String grade=null;
+                		if(ckGS.isSelected()) grade=ckGS.getText();
+                		if(ckUS.isSelected()) grade=ckUS.getText();
+                		String dname = (String) cb_depart.getSelectedItem();
+                		Student stu = new Student(null, null, year, grade, dname);
+                		StudentManager sm = new StudentManager();
+                		ArrayList<Student> studentList = sm.selectStudent(stu);
+                		//테이블갱신
+                		tableModel.setRowCount(0);
+                		for(Student i : studentList) {
+                			Object[] row = {i.getName(), i.getNum(), i.getYear(), i.getGrade(), i.getDepartment()};
+                			tableModel.addRow(row);
+                		}
+                		tableModel.fireTableDataChanged();                		
+                	}
                 }
 			}
 		});

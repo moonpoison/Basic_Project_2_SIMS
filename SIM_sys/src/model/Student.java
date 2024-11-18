@@ -3,12 +3,12 @@ public class
 Student {
 	String name;
 	String num;
-	int year;
+	Integer year;
 	String grade;
 	String department;
 	
 	//생성자
-	public Student(String name, String num, int year, String grade, String department) {
+	public Student(String name, String num, Integer year, String grade, String department) {
 		this.name=name;
 		this.num=num;
 		this.year=year;
@@ -24,7 +24,7 @@ Student {
         return num;
     }
     //학년반환
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
     //구분반환

@@ -22,32 +22,28 @@ public class QueryMaker {
 		return query;
 	}
 	//students 테이블에 보낼 INSERT 쿼리를 만드는 메소드
-	public ArrayList<String> createIQueryStudent(ArrayList<Student> Students) {
-		ArrayList<String> queries = new ArrayList<>();
-		for(Student student : Students) {
-			String query = String.format("INSERT INTO students(snum, sname, year, grade, department) VALUES ('%s', '%s', %d, '%s', '%s')", student.getNum(), student.getName(), student.getYear(), student.getGrade(), student.getDepartment());
-			queries.add(query);
-		}
-		return queries;
+	public String createIQueryStudent(Student student) {
+		String query = String.format("INSERT INTO students(snum, sname, year, grade, department) VALUES ('%s', '%s', %d, '%s', '%s')", student.getNum(), student.getName(), student.getYear(), student.getGrade(), student.getDepartment());
+		return query;
 	}
 	//students 테이블에 보낼 DELETE 쿼리를 만드는 메소드
-	public ArrayList<String> createDQueryStudent(int[] snum) {
-		ArrayList<String> queries = new ArrayList<>();
-		for(int i : snum) {
-			String query = String.format("DELETE FROM students WHERE snum='%d'", i);
-			queries.add(query);
-		}
-		return queries;
+	public String createDQueryStudent(String snum) {
+		String query = String.format("DELETE FROM students WHERE snum='%s'", snum);
+		return query;
 	}
 	//students 테이블에 보낼 DELETE 쿼리를 만드는 메소드
 	public String createSQueryStudent(Student stu) {
 		String dep = stu.getDepartment();
 		String grade = stu.getGrade();
 		Integer year = stu.getYear();
+		String snum = stu.getNum();
 		
 		String query = String.format("SELECT * FROM students WHERE 1=1");
 		if(dep!=null && !dep.isEmpty()) {
 			query+=String.format(" AND department='%s'", dep);
+		}
+		if(snum!=null && !snum.isEmpty()) {
+			query+=String.format(" AND snum='%s'", snum);
 		}
 		if(grade!=null && !grade.isEmpty()) {
 			query+=String.format(" AND grade='%s'", grade);
@@ -58,8 +54,13 @@ public class QueryMaker {
 		return query;
 	}
 	//students 테이블에 보낼 SELECT ALL 쿼리를 만드는 메소드
-	public String createSQueryDepartment() {
-		String query = "SELECT * FROM departments";
+	public String createSAQueryStudent() {
+		String query = "SELECT * FROM students";
 		return query;
 	}
+	//departments 테이블에 보낼 SELECT ALL 쿼리를 만드는 메소드
+		public String createSQueryDepartment() {
+			String query = "SELECT * FROM departments";
+			return query;
+		}
 }
