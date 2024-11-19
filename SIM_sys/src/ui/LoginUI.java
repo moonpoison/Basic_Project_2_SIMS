@@ -8,6 +8,7 @@ import javax.swing.border.*;
 
 import model.User;
 import util.Login;
+import util.Main;
 
 public class LoginUI {
 
@@ -145,7 +146,8 @@ public class LoginUI {
 				boolean author = login.loginUser();
 				if(author) {
 					//로그인성공
-					lbStatus.setText("로그인성공!");
+					new MainUI();
+					frame.dispose();
 				}else {
 					//로그인실패
 					lbStatus.setText("입력된 정보가 유효하지 않습니다.");

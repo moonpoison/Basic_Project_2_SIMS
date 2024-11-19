@@ -35,36 +35,13 @@ public class InsertStudentUI {
 	private JFrame frame;
 	private JTable table;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InsertStudentUI window = new InsertStudentUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
 	public InsertStudentUI() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(650, 300, 600, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
@@ -139,6 +116,7 @@ public class InsertStudentUI {
 		});
 		btn_instu.setBorder(new LineBorder(new Color(0, 0, 0)));
 		btn_instu.setBackground(SystemColor.control);
+		frame.setVisible(true);
 	}
 
 }

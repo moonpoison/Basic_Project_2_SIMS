@@ -141,11 +141,10 @@ public class RegisterUI {
 		btn_Register.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				User user = new User(tf_ID.getText(), String.valueOf(passwordField.getPassword()));
-				Register regi = new Register(user);
-				boolean author = regi.register();
+				boolean author = new Register().register(user);
 				if(author) {
 					//로그인성공
-					lbStatus.setText("로그인성공!");
+					lbStatus.setText("회원가입에 성공하였습니다!");
 				}else {
 					//로그인실패
 					lbStatus.setText("입력된 정보가 유효하지 않습니다.");

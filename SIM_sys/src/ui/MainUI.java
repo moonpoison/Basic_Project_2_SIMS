@@ -19,6 +19,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud.Delete;
+
 import model.Student;
 import util.DepartmentManager;
 import util.StudentManager;
@@ -28,6 +30,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -44,32 +47,10 @@ public class MainUI {
 	private JTable table;
 	public static boolean isUpdating = false;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainUI window = new MainUI();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
 	public MainUI() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBackground(Color.WHITE);
@@ -171,7 +152,7 @@ public class MainUI {
 		frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
 
 		Object[][] students = null;
-		String columnNames[] = {"학과", "학년", "이름", "구분", "학번"};
+		String columnNames[] = {"이름", "학번", "학년", "구분", "학과"};
 	    DefaultTableModel tableModel = new DefaultTableModel(students, columnNames);
 		JTable table = new JTable(tableModel);
 		table.setEnabled(false);
@@ -229,6 +210,19 @@ public class MainUI {
                 }
 			}
 		});
+		mi_InsertStudent.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new InsertStudentUI();	
+			}
+		});
+		mi_DeleteStudent.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new DeleteStudentUI();	
+			}
+		});
+		frame.setVisible(true);
 	}
 
 }
