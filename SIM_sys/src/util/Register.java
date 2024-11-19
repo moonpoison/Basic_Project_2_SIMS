@@ -5,17 +5,10 @@ import dao.QueryMaker;
 import model.User;
 
 public class Register {
-	String id; //유저의 아이디
-	String pw; //유저의 비밀번호
-	
-	//생정자
-	public Register(User user) {
-		this.id = user.getID();
-		this.pw = user.getPW();
-	}
-	
 	//회원가입 진행
-	public boolean register() {
+	public boolean register(User user) {
+		String id = user.getID();
+		String pw = user.getPW();
 		DatabaseManager dm = DatabaseManager.getInstance();
 		QueryMaker qm = new QueryMaker();
 		boolean valid = new IsValid().isValidID(id);

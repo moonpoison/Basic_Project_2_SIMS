@@ -11,13 +11,13 @@ public class IsValid {
 	public boolean isValidID(String id) {
 		DatabaseManager dm = DatabaseManager.getInstance();
 		QueryMaker qm = new QueryMaker();
-		boolean valid = false; //유효성
+		boolean valid = true; //유효성
 		
 		String query = qm.createExistIDQuery(id);
 		ResultSet rs = dm.executeQuery(query);
 		try {
 			if(rs!=null && rs.next()) {
-				valid = true;
+				valid=false;
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
