@@ -24,7 +24,6 @@ import com.mysql.cj.x.protobuf.MysqlxCrud.Delete;
 import model.Student;
 import util.DepartmentManager;
 import util.StudentManager;
-import util.ConvertObject;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
