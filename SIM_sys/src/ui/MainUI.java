@@ -222,6 +222,12 @@ public class MainUI {
 				new DeleteStudentUI();	
 			}
 		});
+		mi_Exit.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);	
+			}
+		});
 		frame.setVisible(true);
 	}
 
